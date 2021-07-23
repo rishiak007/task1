@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 import logging
+import mysql.connector as mysql
 app = Flask(__name__)
 logging.basicConfig(filename='application.log', level=logging.INFO,
     format='%(levelname)s:%(message)s')
@@ -9,6 +10,16 @@ app.config['MYSQL_HOST'] = 'database-2.cshux5aaxeaw.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'admin'
 app.config['MYSQL_PASSWORD'] = 'rishi123'
 app.config['MYSQL_DB'] = 'reg'
+
+db = mysql.connect(
+    host = "database-2.cshux5aaxeaw.us-east-1.rds.amazonaws.com",
+    user = "admin",
+    passwd = "rishi123"
+)
+cursor = db.cursor()
+cursor.execute("CREATE DATABASE reg")
+cursor.execute("USE reg")
+cursor.execute("CREATE TABLE information (name VARCHAR(150), age INT(3), email VARCHAR(150), phone VARCHAR(150))")
 
 mysql = MySQL(app)
 

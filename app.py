@@ -17,9 +17,9 @@ db = mysql.connect(
     passwd = "rishi123"
 )
 cursor = db.cursor()
-cursor.execute("CREATE DATABASE reg")
+cursor.execute("CREATE DATABASE IF NOT EXISTS reg")
 cursor.execute("USE reg")
-cursor.execute("CREATE TABLE information (name VARCHAR(150), age INT(3), email VARCHAR(150), phone VARCHAR(150))") 
+cursor.execute("CREATE TABLE IF NOT EXISTS information (name VARCHAR(150), age INT(3), email VARCHAR(150), phone VARCHAR(150))") 
 
 mysql = MySQL(app)
 
